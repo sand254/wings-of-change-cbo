@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Causes - Wings of Change</title>
+    <meta name="description" content="Learn about the causes and initiatives supported by Wings of Change in Busia, Nambale Constituency.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specific to causes page */
+        .causes-hero {
+            background-image: url('https://i.ibb.co/Lm6b28K/jd.jpg');
+            background-size: cover;          /* Makes the image cover the section */
+            background-repeat: no-repeat;    /* Prevents tiling */
+            background-position: top center; /* Moves the visible focus upward */
+            height: 100vh;                   /* Optional: Full screen height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .cause-detail {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .cause-detail:last-child {
+            border-bottom: none;
+        }
+        
+        .cause-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .cause-detail-image {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        
+        .cause-detail-content h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .cause-detail-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .cause-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-box {
+            background-color: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        
+        .stat-box h3 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-box p {
+            margin-bottom: 0;
+            font-size: 0.875rem;
+        }
+        
+        .impact-list {
+            margin-bottom: 2rem;
+        }
+        
+        .impact-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .impact-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .cause-detail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cause-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.pnghttps://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.png" alt="Wings of Change Logo">
+                    <span>Wings of Change</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html" class="active">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero causes-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Our Causes</h1>
+                <p>Learn about the initiatives we're supporting in Nambale, Busia County and how your contributions make a difference.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Causes Detail Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-intro text-center">
+                <h2 class="section-title">Making a Difference in Nambale</h2>
+                <p class="section-description">At Wings of Change, we focus on sustainable initiatives that address the most pressing needs in our community. Through your support, we're able to create lasting positive change.</p>
+            </div>
+            
+            <!-- Education Cause -->
+            <div class="cause-detail">
+                <div class="cause-detail-grid">
+                    <div class="cause-detail-image">
+                        <img src="images/education.jpg" style="width: 100%; height: auto;" alt="Education for All Initiative">
+                    </div>
+                    <div class="cause-detail-content">
+                        <h2>Education for All</h2>
+                        <p>Education is the foundation for a better future. In Nambale, many children face barriers to quality education due to poverty, lack of resources, and inadequate infrastructure. Our Education for All initiative aims to break down these barriers and provide every child with the opportunity to learn and grow.</p>
+                        
+                        <div class="cause-stats">
+                            <div class="stat-box">
+                                <h3>250+</h3>
+                                <p>Students Supported</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>5</h3>
+                                <p>Schools Improved</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Ksh 90,000</h3>
+                                <p>Funds Raised</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Our Impact</h3>
+                        <ul class="impact-list">
+                            <li>Provided scholarships to 50 underprivileged students</li>
+                            <li>Distributed school supplies to over 200 children</li>
+                            <li>Renovated classrooms in 5 local schools</li>
+                            <li>Established a community library with over 1,000 books</li>
+                            <li>Conducted teacher training programs to improve education quality</li>
+                        </ul>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Ksh90,000 raised of Ksh300,000 goal</span>
+                            </div>
+                        </div>
+                        
+                        <a href="donate.html?cause=education" class="btn btn-primary">Support This Cause</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Food Security Cause -->
+            <div class="cause-detail">
+                <div class="cause-detail-grid">
+                    <div class="cause-detail-content">
+                        <h2>Community Food Bank</h2>
+                        <p>Food insecurity affects many families in Nambale, particularly during drought seasons and economic hardships. Our Community Food Bank initiative ensures that vulnerable families have access to nutritious meals and that no one in our community goes hungry.</p>
+                        
+                        <div class="cause-stats">
+                            <div class="stat-box">
+                                <h3>120+</h3>
+                                <p>Families Supported</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>3</h3>
+                                <p>Community Gardens</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Ksh85,500</h3>
+                                <p>Funds Raised</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Our Impact</h3>
+                        <ul class="impact-list">
+                            <li>Distributed food packages to over 120 families monthly</li>
+                            <li>Established 3 community gardens for sustainable food production</li>
+                            <li>Conducted 15 nutrition education workshops</li>
+                            <li>Partnered with local farmers to source fresh produce</li>
+                            <li>Implemented emergency food relief during the COVID-19 pandemic</li>
+                        </ul>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 85%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Ksh85500 raised of Ksh100,000 goal</span>
+                            </div>
+                        </div>
+                        
+                        <a href="donate.html?cause=food" class="btn btn-primary">Support This Cause</a>
+                    </div>
+                    <div class="cause-detail-image">
+                        <img src="images/community fd.jpg" alt="Community Food Bank Initiative">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Youth Development Cause -->
+            <div class="cause-detail">
+                <div class="cause-detail-grid">
+                    <div class="cause-detail-image">
+                        <img src="images/kazi.jpg" style="width: 300%; height: 200%;"  alt="Youth Development Program">
+                    </div>
+                    <div class="cause-detail-content">
+                        <h2>Youth Development Program</h2>
+                        <p>Young people in Nambale face numerous challenges, including limited access to skills training, high unemployment rates, and few recreational opportunities. Our Youth Development Program empowers young people with the skills, knowledge, and opportunities they need to build bright futures for themselves and their communities.</p>
+                        
+                        <div class="cause-stats">
+                            <div class="stat-box">
+                                <h3>180+</h3>
+                                <p>Youth Participants</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>12</h3>
+                                <p>Skills Workshops</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Ksh280,000</h3>
+                                <p>Funds Raised</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Our Impact</h3>
+                        <ul class="impact-list">
+                            <li>Trained 180 youth in entrepreneurship and vocational skills</li>
+                            <li>Established a youth center with computers and internet access</li>
+                            <li>Organized sports tournaments and arts programs</li>
+                            <li>Facilitated mentorship connections with successful professionals</li>
+                            <li>Helped 25 youth-led businesses get started</li>
+                        </ul>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 60%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Ksh280,000 raised of Ksh350,000 goal</span>
+                            </div>
+                        </div>
+                        
+                        <a href="donate.html?cause=youth" class="btn btn-primary">Support This Cause</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Healthcare Cause -->
+            <div class="cause-detail">
+                <div class="cause-detail-grid">
+                    <div class="cause-detail-content">
+                        <h2>Community Health Initiative</h2>
+                        <p>Access to quality healthcare is a challenge for many residents in Nambale. Our Community Health Initiative works to improve health outcomes by increasing access to medical services, promoting preventive care, and addressing common health issues in the community.</p>
+                        
+                        <div class="cause-stats">
+                            <div class="stat-box">
+                                <h3>500+</h3>
+                                <p>People Served</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>8</h3>
+                                <p>Health Camps</p>
+                            </div>
+                            <div class="stat-box">
+                                <h3>Ksh100,000</h3>
+                                <p>Funds Raised</p>
+                            </div>
+                        </div>
+                        
+                        <h3>Our Impact</h3>
+                        <ul class="impact-list">
+                            <li>Conducted 8 free health camps serving over 500 people</li>
+                            <li>Distributed hygiene kits to 200 families</li>
+                            <li>Organized health education workshops on common diseases</li>
+                            <li>Facilitated vaccination campaigns for children</li>
+                            <li>Supported pregnant women with prenatal care resources</li>
+                        </ul>
+                        
+                        <div class="progress-container">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 48%"></div>
+                            </div>
+                            <div class="progress-stats">
+                                <span>Ksh100,000 raised of Ksh340,000 goal</span>
+                            </div>
+                        </div>
+                        
+                        <a href="donate.html?cause=health" class="btn btn-primary">Support This Cause</a>
+                    </div>
+                    <div class="cause-detail-image">
+                        <img src="images/com health.jpg" style="width: 100%; height: auto;" alt="Community Health Initiative">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta">
+        <div class="container">
+            <h2>Join Us in Making a Difference</h2>
+            <p>Your support enables us to continue these vital initiatives in Nambale. Together, we can create lasting positive change in our community.</p>
+            <div class="cta-buttons">
+                <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                <a href="contact.html" class="btn btn-outline">Get Involved</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Wings of Change</h3>
+                    <p>Building stronger communities through service, education, and sustainable development in Busia, Nambale Constituency.</p>
+                    <p>Feal free to text us on our Whatsapp Number to be updated on our initiatives and events.</p>
+                    <div class="social-links">
+                        <a href="https://wa.link/7zv6wp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nambale Town<br>Busia County, Kenya</li>
+                         <li><i class="fas fa-phone"></i> +254 728035035<br>+254734993402</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:wingsofchangeorg44@gmail.com">wingsofchangeorg44@gmail.com</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to receive updates on our initiatives and events.</p>
+                    <form action="https://formspree.io/f/mqaqlbdj" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+              </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Wings of Change. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

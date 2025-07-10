@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - Wings of Change</title>
+    <meta name="description" content="Hear from those whose lives have been impacted by our programs and initiatives in Busia, Nambale Constituency.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles specific to testimonials page */
+        .testimonials-hero {
+            background-image: url('https://i.ibb.co/XfbP5hJP/gkl.jpg');
+            background-size: cover;          
+            background-repeat: no-repeat;    
+            background-position: top center; 
+            height: 100vh;                   
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .quote-icon {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-role {
+            color: var(--text-lighter);
+            font-size: 0.875rem;
+        }
+        
+        .featured-testimonial {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 4rem;
+            background-color: var(--bg-light);
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        
+        .featured-video {
+            height: 100%;
+            min-height: 350px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .featured-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .play-button i {
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .play-button:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .play-button:hover i {
+            color: white;
+        }
+        
+        .featured-content {
+            padding: 2rem;
+        }
+        
+        .featured-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-quote {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        @media (max-width: 992px) {
+            .featured-testimonial {
+                grid-template-columns: 1fr;
+            }
+            
+            .featured-video {
+                min-height: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.pnghttps://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.png" alt="Wings of Change Logo">
+                    <span>Wings of Change</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html" class="active">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero testimonials-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Testimonials</h1>
+                <p>Hear from those whose lives have been impacted by our programs and initiatives. These stories inspire our work and demonstrate the real difference we're making together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Grid -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Voices from Our Community</h2>
+            <p class="section-description">These personal stories reflect the impact of our work and the difference we're making in Nambale, Busia County.</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">The support I received from Wings of Change changed my life. They provided resources for my family when we needed it most and helped me find employment. I'm now able to support my children and give back to the community that helped us.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/V0cX7Vt7/Whats-App-Image-2025-05-25-at-2-49-32-PM.jpg" alt="Sarah ">
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah </h4>
+                            <div class="author-role">Community Member</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">The educational programs offered here gave me skills I never thought I could acquire. Now I'm able to support my family and give back to the community. The mentors were patient and encouraging, and the resources provided were invaluable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/pj7qx9TM/Whats-App-Image-2025-05-25-at-2-05-17-PM.jpg" alt="Nathan">
+                        </div>
+                        <div class="author-info">
+                            <h4>Nathan </h4>
+                            <div class="author-role">Program Participant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">Volunteering with Wings of Change has been the most rewarding experience. Seeing the direct impact of our work on community members is truly inspiring. The staff is dedicated and passionate, and they create an environment where everyone feels valued.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/YGF3PxY/Whats-App-Image-2025-05-26-at-1-01-32-PM.jpg" alt="Emily ">
+                        </div>
+                        <div class="author-info">
+                            <h4>Emily </h4>
+                            <div class="author-role">Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">I've been supporting this organization for five years, and I'm continually impressed by their transparency and the tangible results they achieve. My contributions are making a real difference in people's lives, and that's exactly what I hoped for.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/Z1Hp7Jvz/Whats-App-Image-2025-05-25-at-2-36-02-PM.jpg" alt="David ">
+                        </div>
+                        <div class="author-info">
+                            <h4>David </h4>
+                            <div class="author-role">Donor</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">After losing my job during the pandemic, I didn't know where to turn. Wings of Change not only helped with immediate needs but also provided job training that led to a new career. I'm forever grateful for their comprehensive support.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/4nX6T3Fk/Whats-App-Image-2025-05-25-at-2-39-34-PM.jpg" alt="Maria ">
+                        </div>
+                        <div class="author-info">
+                            <h4>Maria </h4>
+                            <div class="author-role">Program Participant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">As a local business owner, partnering with Wings of Change has been a wonderful way to give back to our community. Their programs are well-organized, and their staff is professional and dedicated. The impact they're making is truly remarkable.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/ycyjcPCf/Whats-App-Image-2025-05-25-at-2-44-26-PM.jpg" alt="James ">
+                        </div>
+                        <div class="author-info">
+                            <h4>James </h4>
+                            <div class="author-role">Community Partner</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">The youth mentorship program changed my perspective on education and my future. My mentor helped me apply to college and secure scholarships. I'm now studying to become a social worker so I can help others the way Wings of Change helped me.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/fzzTrhYY/Whats-App-Image-2025-05-26-at-1-01-57-PM.jpg" alt="Abraham">
+                        </div>
+                        <div class="author-info">
+                            <h4>Abraham</h4>
+                            <div class="author-role">Youth Program Participant</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">When my family lost our home, we were desperate. Wings of Change not only helped us find temporary housing but worked with us to secure affordable permanent housing and financial counseling. They treated us with dignity throughout the process.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://i.ibb.co/gbCYCM7b/Whats-App-Image-2025-05-26-at-1-01-21-PM.jpg" alt="Chelsea">
+                        </div>
+                        <div class="author-info">
+                            <h4>Chelsea</h4>
+                            <div class="author-role">Former Client</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Video Testimonial -->
+    <section class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">Featured Video Testimonial</h2>
+            <p class="section-description">Watch this powerful story of transformation and hope.</p>
+            
+            <div class="featured-testimonial">
+                <div class="featured-video">
+                    <img src="images/video-testimonial.jpg" alt="The Nafula's Family's Journey">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="featured-content">
+                    <h3>The Nafula's Family's Journey</h3>
+                    <p class="featured-quote">"After losing everything in a house fire, we didn't know where to turn. Wings of Change stepped in immediately with emergency assistance and continued to support us through the rebuilding process. They coordinated volunteers, donations, and professional services that helped us get back on our feet."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="images/testimonial-family.jpg" alt="Nafula's Family">
+                        </div>
+                        <div class="author-info">
+                            <h4>The Nafula's Family</h4>
+                            <div class="author-role">Community Members</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Your Story -->
+    <section class="section">
+        <div class="container text-center">
+            <h2 class="section-title">Share Your Story</h2>
+            <p class="section-description">Has our organization made a difference in your life? We'd love to hear your story and possibly feature it in our testimonials. Your experience can inspire others and help us continue to improve our programs.</p>
+            <a href="contact.html" class="btn btn-primary">Submit Your Testimonial</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Wings of Change</h3>
+                    <p>Building stronger communities through service, education, and sustainable development in Busia, Nambale Constituency.</p>
+                    <p>Feal free to text us on our Whatsapp Number to be updated on our initiatives and events.</p>
+                    <div class="social-links">
+                        <a href="https://wa.link/7zv6wp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nambale Town<br>Busia County, Kenya</li>
+                         <li><i class="fas fa-phone"></i> +254 728035035<br>+254734993402</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:wingsofchangeorg44@gmail.com">wingsofchangeorg44@gmail.com</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our newsletter to receive updates on our initiatives and events.</p>
+                    <form action="https://formspree.io/f/mqaqlbdj" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+              </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Wings of Change. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
