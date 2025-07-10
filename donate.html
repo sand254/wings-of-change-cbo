@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Wings of Change</title>
+    <meta name="description" content="Support our mission by making a donation to Wings of Change. Your generosity helps us continue our work in Busia, Nambale Constituency.">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Stripe JS -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <style>
+        /* Additional styles specific to donate page */
+        .donate-hero {
+            background-image: url(images/community\ fd.jpg);
+        }
+        
+        .donation-card {
+            background-color: var(--bg-white);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        .donation-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .donation-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .donation-header p {
+            color: var(--text-light);
+        }
+        
+        .donation-content {
+            padding: 2rem;
+        }
+        
+        .donation-type {
+            margin-bottom: 2rem;
+        }
+        
+        .donation-type-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-type-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .donation-type-option {
+            position: relative;
+        }
+        
+        .donation-type-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .donation-type-label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .donation-type-input:checked + .donation-type-label {
+            border-color: var(--primary-color);
+            background-color: rgba(34, 197, 94, 0.05);
+        }
+        
+        .donation-type-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
+        }
+        
+        .donation-amount {
+            margin-bottom: 2rem;
+        }
+        
+        .donation-amount-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-amount-options {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-amount-option {
+            position: relative;
+        }
+        
+        .donation-amount-input {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .donation-amount-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+        
+        .donation-amount-input:checked + .donation-amount-label {
+            border-color: var(--primary-color);
+            background-color: rgba(34, 197, 94, 0.05);
+        }
+        
+        .custom-amount {
+            display: none;
+            margin-top: 1rem;
+        }
+        
+        .custom-amount.active {
+            display: block;
+        }
+        
+        .custom-amount-input {
+            position: relative;
+        }
+        
+        .custom-amount-input span {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+        }
+        
+        .custom-amount-input input {
+            width: 100%;
+            padding: 0.75rem 0.75rem 0.75rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .donation-designation {
+            margin-bottom: 2rem;
+        }
+        
+        .donation-designation-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-designation-select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-family: inherit;
+            font-size: 1rem;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23666'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 1rem;
+        }
+        
+        .personal-info {
+            margin-bottom: 2rem;
+        }
+        
+        .personal-info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .personal-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        .comments {
+            margin-bottom: 2rem;
+        }
+        
+        .comments-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .comments-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-family: inherit;
+            font-size: 1rem;
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .payment-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .payment-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        #card-element {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            background-color: white;
+        }
+        
+        #card-errors {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+        }
+        
+        .donation-submit {
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        .donation-success {
+            text-align: center;
+            padding: 3rem 2rem;
+            display: none;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background-color: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .success-icon i {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+        }
+        
+        .donation-success h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .donation-success p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .success-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .other-ways {
+            background-color: var(--bg-light);
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+        
+        .other-ways h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .other-ways p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .other-ways p:last-child {
+            margin-bottom: 0;
+            font-size: 0.875rem;
+            color: var(--text-lighter);
+        }
+        
+        @media (max-width: 768px) {
+            .donation-amount-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .personal-info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .success-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">
+                    <img src="https://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.pnghttps://i.ibb.co/nsh7fsFD/Screenshot-2025-05-07-160536.png" alt="Wings of Change Logo">
+                    <span>Wings of Change</span>
+                </a>
+                
+                <nav class="main-nav">
+                    <ul class="nav-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <a href="donate.html" class="btn btn-primary">Donate Now</a>
+                </nav>
+                
+                <button class="mobile-menu-toggle">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero donate-hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Make a Donation</h1>
+                <p>Your generosity helps us continue our mission of building stronger communities. Every donation, no matter the size, makes a difference.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form Section -->
+    <section class="section">
+        <div class="container">
+            <div class="donation-card">
+                <div class="donation-header">
+                    <h2>Donation Information</h2>
+                    <p>Choose your donation amount and provide your information</p>
+                </div>
+                
+                <div class="donation-content">
+                    <form id="donation-form">
+                        <!-- Donation Type -->
+                        <div class="donation-type">
+                            <div class="donation-type-title">Donation Type</div>
+                            <div class="donation-type-options">
+                                <div class="donation-type-option">
+                                    <input type="radio" name="donation-type" id="one-time" value="one-time" class="donation-type-input" checked>
+                                    <label for="one-time" class="donation-type-label">
+                                        <i class="fas fa-dollar-sign donation-type-icon"></i>
+                                        One-time Donation
+                                    </label>
+                                </div>
+                                
+                                <div class="donation-type-option">
+                                    <input type="radio" name="donation-type" id="monthly" value="monthly" class="donation-type-input">
+                                    <label for="monthly" class="donation-type-label">
+                                        <i class="fas fa-heart donation-type-icon"></i>
+                                        Monthly Donation
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Donation Amount -->
+                        <div class="donation-amount">
+                            <div class="donation-amount-title">Donation Amount</div>
+                            <div class="donation-amount-options">
+                                <div class="donation-amount-option">
+                                    <input type="radio" name="donation-amount" id="amount-25" value="25" class="donation-amount-input">
+                                    <label for="amount-25" class="donation-amount-label">$25</label>
+                                </div>
+                                
+                                <div class="donation-amount-option">
+                                    <input type="radio" name="donation-amount" id="amount-50" value="50" class="donation-amount-input" checked>
+                                    <label for="amount-50" class="donation-amount-label">$50</label>
+                                </div>
+                                
+                                <div class="donation-amount-option">
+                                    <input type="radio" name="donation-amount" id="amount-100" value="100" class="donation-amount-input">
+                                    <label for="amount-100" class="donation-amount-label">$100</label>
+                                </div>
+                                
+                                <div class="donation-amount-option">
+                                    <input type="radio" name="donation-amount" id="amount-custom" value="custom" class="donation-amount-input">
+                                    <label for="amount-custom" class="donation-amount-label">Custom</label>
+                                </div>
+                            </div>
+                            
+                            <div class="custom-amount" id="custom-amount">
+                                <div class="custom-amount-input">
+                                    <span>$</span>
+                                    <input type="number" id="custom-amount-value" min="1" step="1" placeholder="Enter custom amount">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Donation Designation -->
+                        <div class="donation-designation">
+                            <div class="donation-designation-title">Designate Your Donation</div>
+                            <select id="donation-cause" class="donation-designation-select">
+                                <option value="general">General Fund</option>
+                                <option value="education">Education for All</option>
+                                <option value="food">Community Food Bank</option>
+                                <option value="youth">Youth Development Program</option>
+                                <option value="health">Community Health Initiative</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Personal Information -->
+                        <div class="personal-info">
+                            <div class="personal-info-title">Personal Information</div>
+                            <div class="personal-info-grid">
+                                <div class="form-group">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" id="name" name="name" class="form-control" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" id="email" name="email" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Comments -->
+                        <div class="comments">
+                            <div class="comments-title">Comments (Optional)</div>
+                            <textarea id="comments" name="comments" class="comments-textarea" placeholder="Share why you're donating or any special instructions"></textarea>
+                        </div>
+                        
+                        <!-- Payment Information -->
+                        <div class="payment-section">
+                            <div class="payment-title">Payment Information</div>
+                            <div id="card-element">
+                                <!-- Stripe Card Element will be inserted here -->
+                            </div>
+                            <div id="card-errors" role="alert"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary donation-submit" id="submit-button">
+                            <span id="button-text">Donate Now</span>
+                            <span id="spinner" class="hidden">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </span>
+                        </button>
+                    </form>
+                    
+                    <div class="donation-success" id="donation-success">
+                        <div class="success-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2>Thank You for Your Donation!</h2>
+                        <p>Your generous contribution will help us continue our mission of building stronger communities.</p>
+                        <p>We've sent a receipt to your email address.</p>
+                        <div class="success-buttons">
+                            <a href="index.html" class="btn btn-primary">Return Home</a>
+                            <a href="causes.html" class="btn btn-outline">Explore Our Causes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="other-ways">
+                <h3>Other Ways to Give</h3>
+                <p>
+                    If you prefer to donate by check or bank transfer, please contact us at 
+                    <a href="mailto:wingsofchangeorg44@gmail.com" class="text-green-600 hover:underline">
+                        wingsofchangeorg44@gmail.com
+                    </a> 
+                    or call +254 728035035 for instructions.
+                </p>
+                <p>
+                    Wings of Change is a registered nonprofit organization. All donations are tax-deductible to the extent allowed by law.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Wings of Change</h3>
+                    <p>Building stronger communities through service, education, and sustainable development in Busia, Nambale Constituency.</p>
+                    <p>Feal free to text us on our Whatsapp Number to be updated on our initiatives and events.</p>
+                    <div class="social-links">
+                        <a href="https://wa.link/7zv6wp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="causes.html">Our Causes</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Nambale Town<br>Busia County, Kenya</li>
+                         <li><i class="fas fa-phone"></i> +254 728035035<br>+254734993402</li>
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:wingsofchangeorg44@gmail.com">wingsofchangeorg44@gmail.com </a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to our Wings of change community based organisation to receive updates on our initiatives and events </p>
+                    <form action="https://formspree.io/f/mqaqlbdj" method="POST">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+              </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Wings of Change. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Donation Amount Selection
+        const amountInputs = document.querySelectorAll('input[name="donation-amount"]');
+        const customAmountContainer = document.getElementById('custom-amount');
+        const customAmountInput = document.getElementById('custom-amount-value');
+        
+        amountInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customAmountContainer.classList.add('active');
+                    customAmountInput.focus();
+                } else {
+                    customAmountContainer.classList.remove('active');
+                }
+            });
+        });
+        
+        // Handle URL parameters
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const cause = urlParams.get('cause');
+            
+            if (cause && document.getElementById('donation-cause')) {
+                document.getElementById('donation-cause').value = cause;
+            }
+        });
+        
+        // Stripe Integration
+        const stripe = Stripe('pk_test_sample'); // Replace with your Stripe publishable key
+        const elements = stripe.elements();
+        
+        // Create card element
+        const cardElement = elements.create('card', {
+            style: {
+                base: {
+                    fontSize: '16px',
+                    color: '#32325d',
+                    fontFamily: '"Inter", sans-serif',
+                    '::placeholder': {
+                        color: '#aab7c4',
+                    },
+                },
+                invalid: {
+                    color: '#dc2626',
+                    iconColor: '#dc2626',
+                },
+            },
+        });
+        
+        cardElement.mount('#card-element');
+        
+        // Handle form submission
+        const form = document.getElementById('donation-form');
+        const submitButton = document.getElementById('submit-button');
+        const buttonText = document.getElementById('button-text');
+        const spinner = document.getElementById('spinner');
+        const donationSuccess = document.getElementById('donation-success');
+        
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            
+            // Disable the submit button to prevent multiple submissions
+            submitButton.disabled = true;
+            buttonText.style.display = 'none';
+            spinner.style.display = 'inline-block';
+            
+            // Get donation amount
+            let amount;
+            const selectedAmount = document.querySelector('input[name="donation-amount"]:checked').value;
+            
+            if (selectedAmount === 'custom') {
+                amount = customAmountInput.value;
+            } else {
+                amount = selectedAmount;
+            }
+            
+            // Simulate payment processing (in a real implementation, you would create a payment intent on your server)
+            setTimeout(() => {
+                // Hide the form and show success message
+                form.style.display = 'none';
+                donationSuccess.style.display = 'block';
+                
+                // Scroll to success message
+                donationSuccess.scrollIntoView({ behavior: 'smooth' });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
